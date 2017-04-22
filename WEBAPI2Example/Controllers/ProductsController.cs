@@ -115,5 +115,40 @@ namespace WEBAPI2Example.Controllers
         {
             return db.Products.Count(e => e.ProductID == id) > 0;
         }
+
+        // PUT: api/Products/5
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PatchProduct(int id, Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != product.ProductID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(product).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
     }
 }
