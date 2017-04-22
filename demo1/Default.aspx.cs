@@ -11,7 +11,10 @@ namespace demo1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var calc = new localhost.WebServiceExample1();
 
+            var result = calc.Add(1, 1);
+            Label1.Text = result.ToString();
         }
     }
 }

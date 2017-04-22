@@ -37,6 +37,7 @@
                 <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
             </p>
         </div>
+        
     </div>
-
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 </asp:Content>
